@@ -1,14 +1,235 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>integration3</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-    <p>test</p>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Christian Dior - A Journey Through Sketches</title>
+  <link rel="stylesheet" href="src/css/style.css" />
+</head>
+
+<body>
+  <main class="dior-page">
+    <!-- Header Section -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <h1 class="hero-title">
+          Before <br> the THREAD,<br> there was <br>the<span class="highlight"> line</span>
+        </h1>
+        <p class="hero-subtitle">A journey through <strong>sketches</strong></p>
+        <svg class="stroke "width="5" height="200" viewBox="0 0 5 1382" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M5 1379C5.00122 1379.66 4.73889 1380.3 4.27003 1380.77C3.80121 1381.24 3.16426 1381.5 2.5 1381.5C1.83574 1381.5 1.19879 1381.24 0.729967 1380.77C0.261106 1380.3 -0.00121873 1379.66 0 1379C0.0416667 1356.02 0.0833333 1333.03 0.125 1310.05C0.875 896.35 1.625 482.65 2.375 68.95C2.41667 45.9668 2.45833 22.9834 2.5 0C2.54167 22.9834 2.58333 45.9668 2.625 68.95C3.375 482.65 4.125 896.35 4.875 1310.05C4.91667 1333.03 4.95833 1356.02 5 1379Z" fill="#D57979"/>
+</svg>
+
+        <p class="location-date">Paris 1930s</p>
+        <nav class="nav-links">
+          <a href="#paris" class="nav-item">Sketches as currency</a>
+          <a href="#fashion" class="nav-item">Eye for fashion?</a>
+          <a href="#making" class="nav-item">Dior in the making</a>
+          <a href="#collections" class="nav-item">First collections</a>
+          <a href="#your-dior" class="nav-item">Time to be Dior</a>
+          <a href="#why" class="nav-item">Why all this matters</a>
+        </nav>
+        <button class="cta-button">BEGIN THE JOURNEY</button>
+      </div>
+      <img src="src/assets/diorheader.png" alt="Christian Dior portrait" class="hero-image">
+    </section>
+
+    <!-- Paris 1930s Section -->
+    <section id="paris" class="content-section">
+      <div class="section-header">
+        <h2>Christian.dior</h2>
+        <p class="dates">21.01.1905 - 24.10.1957</p>
+      </div>
+      <img src="${images.adobeStock650}" alt="Background" class="section-bg">
+      <p class="section-title">Paris</p>
+      <p class="section-subtitle">Dior's rock bottom</p>
+    </section>
+
+    <!-- Sketches as Currency Section -->
+    <section id="currency" class="content-section">
+      <div class="text-content">
+        <h3>Ink as income</h3>
+        <p class="description">
+          Christian Dior began <strong>selling his drawings</strong> to milliners and couture houses...
+        </p>
+      </div>
+      <button class="cta-button">CHECK OUT HIS SKETCHES</button>
+    </section>
+
+    <!-- The Pen Section -->
+    <section id="pen" class="content-section">
+      <h3 class="large-title">SKETCHES AS CURRENCY</h3>
+      <p class="description">Speed is essential. Dior must produce many drawings to survive...</p>
+      <img src="${images.adobeStock650}" alt="Background" class="section-bg">
+    </section>
+
+    <!-- Eye for Fashion Section -->
+    <section id="fashion" class="content-section">
+      <h2 class="large-title">DO YOU HAVE AN EYE FOR FASHION?</h2>
+      <div class="sketch-section">
+        <p class="instruction"><strong>Erase the details</strong> from Dior's early sketches to discover the <strong
+            class="highlight">essentiality</strong></p>
+        <p class="secondary-text"><strong>Click the eraser</strong>, and erase the sketch</p>
+        <div class="canvas-container">
+          <canvas id="sketch-canvas" width="800" height="600"></canvas>
+          <img src="${images.adobeStock529}" alt="Fashion sketch" id="sketch-image">
+        </div>
+        <button id="reset-canvas" class="cta-button">RESET</button>
+      </div>
+      <img src="${images.adobeStock527}" alt="Background" class="section-bg">
+    </section>
+
+    <!-- Making Section -->
+    <section id="making" class="content-section">
+      <h2 class="large-title">DIOR IN THE MAKING, A STUDENT</h2>
+      <p class="year-label">1941-1946</p>
+      <div class="quote-section">
+        <blockquote class="quote-text">
+          Paul Caldaguès introduced me to <em>Lucien Lelong</em>, who hired me immediately...
+        </blockquote>
+      </div>
+      <p class="section-label">The foundation has been built</p>
+      <p class="description">At Lelong, Dior <strong class="highlight">stops drawing to survive.</strong> He starts
+        <strong>drawing to design</strong>.</p>
+    </section>
+
+    <!-- First Collections Section -->
+    <section id="collections" class="content-section">
+      <h2 class="large-title">First Collections</h2>
+      <p class="year-label">1947</p>
+      <div class="inspiration-grid">
+        <div class="inspiration-item">
+          <img src="${images.screenshot1}" alt="Fashion inspiration 1">
+        </div>
+        <div class="inspiration-item">
+          <img src="${images.screenshot2}" alt="Fashion inspiration 2">
+        </div>
+        <div class="inspiration-item">
+          <img src="${images.screenshot3}" alt="Fashion inspiration 3">
+        </div>
+      </div>
+      <p class="description">The first collection, <em>Spring–Summer 1947</em>, was presented on February 12th...</p>
+    </section>
+
+    <!-- Your Time to be Dior -->
+    <section id="your-dior" class="content-section">
+      <h2 class="large-title">Your time to be dior</h2>
+      <p class="timer-label">00:30</p>
+      <div class="sketch-challenge">
+        <p class="challenge-text">
+          <strong class="highlight">Your time to shine</strong>, you have <em>30 seconds</em> to make a sketch of
+          <strong>a garment of your choice</strong>.
+        </p>
+        <p>Below you have some inspiration to help you out!</p>
+      </div>
+      <div class="inspiration-grid">
+        <div class="inspiration-item">
+          <img src="${images.image5}" alt="Fashion inspiration">
+        </div>
+        <div class="inspiration-item">
+          <img src="${images.image4}" alt="Fashion inspiration">
+        </div>
+        <div class="inspiration-item">
+          <img src="${images.image17}" alt="Fashion inspiration">
+        </div>
+      </div>
+    </section>
+
+    <!-- Why All This Matters Section -->
+    <section id="why" class="content-section">
+      <h2 class="large-title">WHY ALL THIS MATTERS</h2>
+      <h3 class="section-title">Dior's legacy</h3>
+      <p class="description">
+        is not just in the dresses he created, but in the process that made them possible...
+      </p>
+      <img src="${images.image24}" alt="Dior collection" class="section-image">
+    </section>
+
+    <!-- Memory Section -->
+    <section class="memory-section">
+      <h2 class="memory-title">In memory of</h2>
+      <p class="designer-name">Christian Ernest Dior</p>
+      <p class="birth-death">21.01.1905 - 24.10.1957</p>
+      <p class="description">Every piece of clothing begins with a <strong>line of thread</strong>.<br>But before that,
+        a <strong>line of <span class="highlight">ink</span></strong>.</p>
+      <nav class="footer-nav">
+        <a href="#" class="footer-link">Read more articles</a>
+        <a href="#" class="footer-link">Read more articles</a>
+        <a href="#" class="footer-link">Visit MoMu</a>
+      </nav>
+    </section>
+  </main>
+
+  <script type="module">
+    // Image assets from Figma
+    const images = {
+      adobeStock292: 'http://localhost:3845/assets/87d98c5de672d121f89524960e824c40285d7181.png',
+      adobeStock527: 'http://localhost:3845/assets/2e49cbc62a975269c3defcb98bd3abd4cf682832.png',
+      adobeStock650: 'http://localhost:3845/assets/d19d562e18e92e52edf80402aa52a466c5f05cbf.png',
+      notebookZonder: 'http://localhost:3845/assets/a2b9ec80fed89dccd254c2e281793b4df579d8b6.png',
+      image5: 'http://localhost:3845/assets/9c8cd3388c2459d03c66be6c450fa10a5ed67611.png',
+      image4: 'http://localhost:3845/assets/89a0b1c5499976ab54c737e80afff7fad7e1f2f9.png',
+      adobeStock581: 'http://localhost:3845/assets/55676326e0c6bce1ec69b99dd318a20b401052d6.png',
+      adobeStock529: 'http://localhost:3845/assets/65e6cac565d930f044fd054800007226999e8809.png',
+      image15: 'http://localhost:3845/assets/0fdbb0bf91241ef21847739b4abb6e0155f59022.png',
+      adobeStock173: 'http://localhost:3845/assets/ebfd5d3ea68300af3e04498e462c5004f9fe6a4c.png',
+      screenshot1: 'http://localhost:3845/assets/5cdd3b67076a4ef2535417569de29ab2fbcabcc1.png',
+      screenshot2: 'http://localhost:3845/assets/c709a75e9b9f973189a5d5c7b0158d2d0cc7e80f.png',
+      screenshot3: 'http://localhost:3845/assets/ea4d19e6fa6423be742096eefeea80596304b583.png',
+      image24: 'http://localhost:3845/assets/2b38e57ff59fd89851bbacaef8b372b105cb8a37.png',
+    }
+
+    // Initialize interactions
+    initializeCanvas()
+    initializeNavigation()
+
+    function initializeCanvas() {
+      const canvas = document.getElementById('sketch-canvas')
+      if (!canvas) return
+
+      const ctx = canvas.getContext('2d')
+      const img = document.getElementById('sketch-image')
+      let isDrawing = false
+
+      // Draw the image on canvas
+      img.onload = () => {
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+      }
+
+      // Eraser functionality
+      canvas.addEventListener('mousedown', () => { isDrawing = true })
+      canvas.addEventListener('mouseup', () => { isDrawing = false })
+      canvas.addEventListener('mousemove', (e) => {
+        if (!isDrawing) return
+
+        const rect = canvas.getBoundingClientRect()
+        const x = e.clientX - rect.left
+        const y = e.clientY - rect.top
+
+        ctx.clearRect(x - 20, y - 20, 40, 40)
+      })
+
+      // Reset button
+      document.getElementById('reset-canvas').addEventListener('click', () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+      })
+    }
+
+    function initializeNavigation() {
+      document.querySelectorAll('.nav-item').forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault()
+          const href = link.getAttribute('href')
+          const target = document.querySelector(href)
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' })
+          }
+        })
+      })
+    }
+  </script>
+</body>
+
 </html>
