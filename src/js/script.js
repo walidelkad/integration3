@@ -194,10 +194,6 @@ function setupSketchesAnimation() {
 function setupAnimation() {
   // Animate first diorimg (header image)
   const diorimg = document.querySelector('.diorimg');
-
-  if (sketches.length === 0) return;
-
-
   if (diorimg) {
     gsap.to(diorimg, {
       scrollTrigger: {
@@ -215,10 +211,6 @@ function setupAnimation() {
 
   // Animate second diorimg (2defoto.png)
   const dior2img = document.querySelector('.dior2img');
-
-  if (sketches.length === 0) return;
-
-  
   if (dior2img) {
     gsap.to(dior2img, {
       scrollTrigger: {
@@ -236,9 +228,6 @@ function setupAnimation() {
 
   // Animate third diorimg (3defoto.png)
   const dior3img = document.querySelector('.dior3img');
-
-  if (sketches.length === 0) return;
-
   if (dior3img) {
     gsap.to(dior3img, {
       scrollTrigger: {
