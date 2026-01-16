@@ -163,6 +163,117 @@ function setupTimer() {
   }
 }
 
+
+/********************************/
+
+
+// Animate sketch gallery images
+function setupSketchesAnimation() {
+  const sketches = document.querySelectorAll('.sketch-item');
+
+  if (sketches.length === 0) return;
+
+  gsap.to(sketches, {
+    scrollTrigger: {
+      trigger: '.sketches-gallery',
+      start: 'top 70%',
+      toggleActions: 'play none none reset'
+    },
+    opacity: 1,
+    scale: 1,
+    rotation: 0,
+    duration: 2,
+    stagger: {
+      amount: 0.8,
+      from: 'start'
+    },
+    ease: 'power3.out'
+  });
+}
+
+function setupAnimation() {
+  // Animate first diorimg (header image)
+  const diorimg = document.querySelector('.diorimg');
+
+  if (sketches.length === 0) return;
+
+
+  if (diorimg) {
+    gsap.to(diorimg, {
+      scrollTrigger: {
+        trigger: '.hero-section',
+        start: 'top 70%',
+        toggleActions: 'play none none reset'
+      },
+      opacity: 1,
+      scale: 1,
+      rotation: 0,
+      duration: 1.5,
+      ease: 'power3.out'
+    });
+  }
+
+  // Animate second diorimg (2defoto.png)
+  const dior2img = document.querySelector('.dior2img');
+
+  if (sketches.length === 0) return;
+
+  
+  if (dior2img) {
+    gsap.to(dior2img, {
+      scrollTrigger: {
+        trigger: '.dior2img',
+        start: 'top 95%',
+        toggleActions: 'play none none reset'
+      },
+      opacity: 1,
+      scale: 1,
+      rotation: 0,
+      duration: 1.5,
+      ease: 'power3.out'
+    });
+  }
+
+  // Animate third diorimg (3defoto.png)
+  const dior3img = document.querySelector('.dior3img');
+
+  if (sketches.length === 0) return;
+
+  if (dior3img) {
+    gsap.to(dior3img, {
+      scrollTrigger: {
+        trigger: '.dior3img',
+        start: 'top 95%',
+        toggleActions: 'play none none reset'
+      },
+      opacity: 1,
+      scale: 1,
+      rotation: 0,
+      duration: 1.5,
+      ease: 'power3.out'
+    });
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Initialize all interactions on page load
 document.addEventListener('DOMContentLoaded', () => {
   setupStrokeAnimation();
@@ -170,6 +281,8 @@ document.addEventListener('DOMContentLoaded', () => {
   setupSmoothScrolling();
   setupScrollAnimations();
   setupTimer();
+  setupSketchesAnimation();
+  setupAnimation();
 
   // Handle window resize for canvas
   window.addEventListener('resize', () => {

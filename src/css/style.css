@@ -9,6 +9,8 @@ html {
   width: 100%;
   max-width: 100vw;
   overflow-x: hidden;
+
+
 }
 
 body {
@@ -19,17 +21,23 @@ body {
   width: 100%;
   max-width: 100vw;
   overflow-x: hidden;
+}
 
+.dior-page {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
   background-image:
     linear-gradient(rgb(255, 255, 255), rgb(194, 194, 194)),
     url(/integration3/src/assets/shader4.png),
     url(/integration3/src/assets/texture3.jpeg),
-                url(/integration3/src/assets/t17.jpeg);
-  background-size: cover;
-  background-blend-mode:overlay, overlay, multiply;
-
-  background-attachment: fixed;
+    url(/integration3/src/assets/t17.jpeg);
+  background-position: center, center, center, center;
+  background-blend-mode: overlay, overlay, multiply, multiply;
   background-repeat: repeat;
+  background-size: auto, auto, auto, auto;
+  background-attachment: scroll;
+
 }
 
 .hero-title {
@@ -70,6 +78,24 @@ body {
   width: 300px;
   display: block;
   margin: 0 auto;
+  opacity: 0;
+  transform: scale(0.8) rotate(-5deg);
+}
+
+.dior2img {
+  width: 300px;
+  display: block;
+  margin: 0 auto;
+  opacity: 0;
+  transform: scale(0.8) rotate(5deg);
+}
+
+.dior3img {
+  width: 300px;
+  display: block;
+  margin: 0 auto;
+  opacity: 0;
+  transform: scale(0.8) rotate(-5deg);
 }
 
 .iron {
@@ -125,6 +151,7 @@ body {
 }
 
 .paris-text {
+  filter: blur(0.001em);
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: 90px;
   font-weight: 700;
@@ -153,7 +180,6 @@ body {
   position: relative;
   z-index: 0;
   background-image: url(/integration3/src/assets/papershed.png);
-  background-size: cover;
   background-repeat: no-repeat;
 
 }
@@ -191,16 +217,140 @@ body {
   max-width: 1200px;
   width: 100%;
   box-sizing: border-box;
+  margin-top: 1rem;
 }
 
 .rockbottom-title {
+  filter: blur(0.001em);
   font-family: 'IBM Plex Sans', sans-serif;
-  font-size: clamp(24px, 5vw, 60px);
+  font-size: clamp(50px, 5vw, 80px);
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 0.9;
   color: #ffffff;
   text-align: center;
   margin-bottom: 2rem;
+}
+
+.papersection2 {
+  position: relative;
+  z-index: 1;
+  background-image: url(/integration3/src/assets/papershed.png);
+  background-repeat: no-repeat;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.coin {
+  filter: blur(0.001em);
+  position: relative;
+  z-index: -10;
+}
+
+.sketches-title {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: clamp(60px, 8vw, 200px);
+  font-weight: 700;
+  line-height: 0.9;
+  color: rgba(57, 57, 61, 0.9);
+  text-transform: uppercase;
+  text-align: center;
+  margin: 7rem 0 5rem;
+  filter: blur(0.001em);
+}
+
+.pen-mightier {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: clamp(32px, 6vw, 90px);
+  font-weight: 700;
+  line-height: 1.1;
+  color: #d57979;
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.ink-income {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: clamp(24px, 5vw, 64px);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #d57979;
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.selling-text {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: clamp(18px, 3.5vw, 48px);
+  font-weight: 500;
+  line-height: 1.4;
+  color: rgba(57, 57, 61, 0.9);
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 0 2rem;
+}
+
+.selling-text p {
+  margin: 0;
+}
+
+.selling-text em {
+  font-style: italic;
+}
+
+.selling-text strong {
+  font-weight: 700;
+}
+
+.selling-text .pink-emphasis {
+  color: #d57979;
+  font-weight: 700;
+}
+
+.speed-text {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: clamp(18px, 3.5vw, 48px);
+  font-weight: 500;
+  line-height: 1.4;
+  color: rgba(57, 57, 61, 0.9);
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 0 2rem;
+}
+
+.speed-text p {
+  margin: 0;
+}
+
+.speed-text strong {
+  font-weight: 700;
+}
+
+.speed-text .pink-emphasis {
+  color: #d57979;
+  font-weight: 700;
+}
+
+.sketches-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin: 4rem auto;
+  max-width: 1400px;
+  padding: 0 2rem;
+}
+
+.sketch-item {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  opacity: 0;
+  transform: scale(0.8) rotate(-5deg);
+  filter: grayscale(0.3);
+  transition: filter 0.3s ease;
+}
+
+.sketch-item:hover {
+  filter: grayscale(0);
 }
 
 .story-text-dark p {
@@ -228,6 +378,47 @@ body {
 }
 
 .story-text .pink-emphasis {
+  color: #d57979;
+  font-weight: 700;
+}
+
+.moment-section {
+  padding: 4rem 2rem;
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.moment-text {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(40px, 6vw, 90px);
+  font-weight: 400;
+  line-height: 1.2;
+  color: rgba(57, 57, 61, 0.9);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.designer-text {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: clamp(18px, 3.5vw, 48px);
+  font-weight: 400;
+  line-height: 1.4;
+  color: rgba(57, 57, 61, 0.9);
+  text-align: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.designer-text p {
+  margin: 0;
+}
+
+.designer-text strong {
+  font-weight: 700;
+}
+
+.designer-text .pink-emphasis {
   color: #d57979;
   font-weight: 700;
 }
