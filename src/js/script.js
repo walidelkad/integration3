@@ -2,6 +2,37 @@
 // CHRISTIAN DIOR WEBSITE - JAVASCRIPT
 // ============================================================================
 
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
+// Animate SVG stroke on scroll
+function setupStrokeAnimation() {
+  const strokePath = document.querySelector('.stroke path');
+  if (!strokePath) return;
+
+  const pathLength = strokePath.getTotalLength();
+
+  // Set up the starting position
+  gsap.set(strokePath, {
+    strokeDasharray: pathLength,
+    strokeDashoffset: pathLength
+  });
+
+  // Animate on scroll
+  gsap.to(strokePath, {
+    strokeDashoffset: 0,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '.stroke',
+      start: 'top center',
+      end: 'bottom center',
+      scrub: 1
+    }
+  });
+}
+
 // Initialize the canvas eraser functionality
 function initializeSketchCanvas() {
   const canvas = document.getElementById('sketch-canvas');
@@ -134,6 +165,7 @@ function setupTimer() {
 
 // Initialize all interactions on page load
 document.addEventListener('DOMContentLoaded', () => {
+  setupStrokeAnimation();
   initializeSketchCanvas();
   setupSmoothScrolling();
   setupScrollAnimations();
@@ -146,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const container = canvas.parentElement;
       const newWidth = container.offsetWidth;
       const newHeight = (newWidth / 800) * 600;
-      
+
       if (canvas.width !== newWidth || canvas.height !== newHeight) {
         const ctx = canvas.getContext('2d');
         const img = document.getElementById('sketch-image');
