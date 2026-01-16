@@ -1,31 +1,30 @@
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+
 gsap.registerPlugin(ScrollTrigger);
 
-document.addEventListener("DOMContentLoaded", () => {
-  let svg = document.querySelector("svg");
-  let path = svg?.querySelector("path");
+let svg = document.querySelector("svg");
+let path = svg.querySelector("path");
 
-  if (!svg || !path) {
-    console.error("SVG or path element not found");
-    return;
-  }
+const pathLength = path.getTotalLength();
 
-  const pathLength = path.getTotalLength();
+console.log(pathLength);
 
-  gsap.set(path, { strokeDasharray: pathLength });
+gsap.set(path, { strokeDasharray: pathLength });
+console.log(gsap, ScrollTrigger);
 
-  gsap.fromTo(
-    path,
-    {
-      strokeDashoffset: pathLength,
+gsap.fromTo(
+  path,
+  {
+    strokeDashoffset: pathLength,
+  },
+  {
+    strokeDashoffset: 0,
+    duration:10,
+    scrollTrigger: {
+      trigger: ".svg-container",
+      start: "top top",
+      end: "bottom bottom",
     },
-    {
-      strokeDashoffset: 0,
-      duration: 10,
-      scrollTrigger: {
-        trigger: ".svg-container",
-        start: "top top",
-        end: "bottom bottom",
-      },
-    }
-  );
-});
+  }
+);
