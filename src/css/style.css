@@ -202,7 +202,9 @@ body {
 .stroke3,
 .stroke4,
 .stroke5,
-.stroke6 {
+.stroke6,
+.stroke7,
+.stroke8 {
   display: block;
   margin: 0 auto;
   width: 5px;
@@ -226,7 +228,9 @@ body {
 .stroke3 line,
 .stroke4 line,
 .stroke5 line,
-.stroke6 line {
+.stroke6 line,
+.stroke7 line,
+.stroke8 line {
   fill: none;
   stroke: #D57979;
   opacity: 0.8;
@@ -295,6 +299,8 @@ body {
   left: 90px;
   top: 60px;
   z-index: 10;
+  filter: blur(0.001em);
+
 
 }
 
@@ -310,7 +316,7 @@ body {
 .papersection {
   background-image: url(/integration3/src/assets/papershed.png);
   background-repeat: no-repeat;
-  
+
 }
 
 .section-header {
@@ -370,6 +376,7 @@ body {
   box-sizing: border-box;
   margin-top: 1rem;
 }
+
 .rockbottom-title {
   filter: blur(0.001em);
   font-family: 'IBM Plex Sans', sans-serif;
@@ -442,6 +449,76 @@ body {
   line-height: 1.2;
   color: #d57979;
   text-align: left;
+}
+
+.background-momu {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(87, 87, 87, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.explore-section {
+  padding: 4rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.explore-title {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: bold;
+  line-height: 60px;
+  color: #d57979;
+  text-align: left;
+  font-size: clamp(18px, 3vw, 48px);
+
+}
+
+.momu-image {
+  height: auto;
+  display: block;
+}
+
+.museum-text {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: clamp(18px, 3vw, 48px);
+  color: rgba(57, 57, 61, 0.9);
+  max-width: 1200px;
+  margin: 2rem 0;
+  text-align: left;
+}
+
+.clothing-title {
+  font-family: 'Argent CF', serif;
+  font-size: 90px;
+  line-height: 70px;
+  color: rgba(57, 57, 61, 0.9);
+  text-align: center;
+  margin: 4rem 0 2rem 0;
+}
+
+.thread-text {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 48px;
+  font-weight: 400;
+  line-height: 50px;
+  color: rgba(57, 57, 61, 0.9);
+  text-align: center;
+  max-width: 1200px;
+  margin: 2rem auto;
+}
+
+.thread-text strong {
+  font-weight: 700;
+}
+
+.thread-text .pink-emphasis {
+  color: #d57979;
+  font-weight: 700;
 }
 
 .selling-text {
@@ -543,7 +620,7 @@ body {
 .moment-section {
   padding: 4rem 2rem;
   text-align: center;
-  
+
 }
 
 .moment-text {
@@ -758,6 +835,44 @@ body {
   color: rgba(57, 57, 61, 0.9);
   margin: 10px 0 0 0;
   font-style: normal;
+}
+
+.memory-section {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.memory-title {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 48px;
+  line-height: 80px;
+  color: rgba(57, 57, 61, 0.9);
+  text-align: center;
+  text-transform: uppercase;
+  margin: 0 auto 1rem auto;
+}
+
+.memory-title p {
+  margin: 0;
+}
+
+.designer-name {
+  font-family: 'Argent CF', serif;
+  font-size: 96px;
+  line-height: 80px;
+  color: #d57979;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 1rem 0;
+}
+
+.designer-dates {
+  font-family: 'Savoye LET', cursive;
+  font-size: 96px;
+  line-height: 80px;
+  color: rgba(57, 57, 61, 0.9);
+  text-align: center;
+  margin: 1rem 0;
 }
 
 .sketchbook-container {

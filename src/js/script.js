@@ -7,7 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 /*****************************/
 // Animate SVG stroke on scroll
 function setupStrokeAnimation() {
-  const strokes = ['.stroke', '.stroke2', '.stroke3', '.stroke4', '.stroke5', '.stroke6'];
+  const strokes = ['.stroke', '.stroke2', '.stroke3', '.stroke4', '.stroke5', '.stroke6', '.stroke7', '.stroke8'];
 
   strokes.forEach((selector) => {
     const strokeSVG = document.querySelector(selector);
@@ -527,23 +527,23 @@ function setupSectionFadeIn() {
   const sections = document.querySelectorAll('section, .hero-content, .svg-container');
 
   sections.forEach((section) => {
-    // Set initial state
-    gsap.set(section, {
-      opacity: 0
-    });
-
-    // Animate
-    gsap.to(section, {
-      opacity: 1,
-      duration: 1.5,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: section,
-        start: 'top 90%',
-        toggleActions: 'play none none none',
-        once: true
+    gsap.fromTo(section,
+      {
+        opacity: 0
+      },
+      {
+        opacity: 1,
+        duration: 1.2,
+        ease: 'back.out(1.4)',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 85%',
+          end: 'bottom 15%',
+          toggleActions: 'play reverse play reverse',
+          invalidateOnRefresh: true
+        }
       }
-    });
+    );
   });
 }
 
