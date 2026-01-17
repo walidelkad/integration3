@@ -73,7 +73,7 @@ body {
 }
 
 .diorimg {
-  width: 300px;
+  width: 160px;
   display: block;
   margin: 0 auto;
   opacity: 0;
@@ -100,7 +100,7 @@ body {
   filter: blur(0.001em);
   position: relative;
 
-  bottom: 68rem;
+  bottom: 40rem;
   right: 2rem;
 
   display: flex;
@@ -122,6 +122,65 @@ body {
   letter-spacing: 0.05em;
   display: block;
   margin: 2rem auto;
+}
+
+.chapter-nav {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 2rem 0;
+  z-index: 1;
+  text-align: center;
+  filter: blur(0.001em);
+}
+
+.chapter-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  text-align: center;
+}
+
+
+
+.chapter-title {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 24px;
+  color: rgba(57, 57, 61, 0.68);
+  text-align: center;
+  -webkit-text-stroke: 25px #f7f7f7;
+  paint-order: stroke fill;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  display: block;
+}
+
+.chapter-title:hover {
+  color: rgba(57, 57, 61, 0.9);
+}
+
+.stroke-wrapper {
+  position: relative;
+  width: 100%;
+  height: 738px;
+  display: flex;
+  justify-content: center;
+}
+
+.stroke {
+  position: relative;
+  z-index: 1;
+  filter: blur(0.001em);
 }
 
 .svg-container {
@@ -152,6 +211,38 @@ body {
   stroke-linejoin: round;
 }
 
+.stroke3 {
+  display: block;
+  margin: 0 auto;
+  width: 5px;
+  height: 738px;
+}
+
+.stroke3 line {
+  fill: none;
+  stroke: #D57979;
+  opacity: 0.8;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.stroke2 {
+  display: block;
+  margin: 0 auto;
+  width: 5px;
+  height: 738px;
+
+}
+
+.stroke2 line {
+  stroke: #D57979;
+  opacity: 0.8;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .pen {
   rotate: 20deg;
   position: relative;
@@ -171,6 +262,7 @@ body {
   text-align: center;
   margin: 2rem 0;
 }
+
 .dior-date {
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: clamp(24px, 4vw, 48px);
@@ -183,6 +275,7 @@ body {
   text-decoration: underline;
   text-decoration-color: rgba(57, 57, 61, 0.8);
 }
+
 .dior-subtitle {
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: clamp(50px, 5vw, 64px);
@@ -283,7 +376,7 @@ body {
 
 .sketches-title {
   font-family: 'IBM Plex Sans', sans-serif;
-  font-size: clamp(60px, 8vw, 200px);
+  font-size: clamp(50px, 8vw, 200px);
   font-weight: 700;
   line-height: 0.9;
   color: rgba(57, 57, 61, 0.9);
@@ -301,6 +394,18 @@ body {
   color: #d57979;
   text-align: center;
   margin: 2rem 0;
+}
+
+.dior-title {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: clamp(60px, 8vw, 200px);
+  font-weight: 700;
+  line-height: 0.9;
+  color: rgba(57, 57, 61, 0.9);
+  text-transform: uppercase;
+  text-align: center;
+  margin: 7rem 0 5rem;
+  filter: blur(0.001em);
 }
 
 .ink-income {
@@ -476,4 +581,124 @@ body {
 .learning-text .pink-emphasis {
   color: #d57979;
   font-weight: 700;
+}
+
+.student {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  padding: 4rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.student .lelongbook {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  justify-self: center;
+  grid-column: 1;
+}
+
+.student .quote-block {
+  grid-column: 2;
+  position: relative;
+  max-width: 843px;
+  margin: 0 auto;
+}
+
+.student .quote-pen {
+  width: 80px;
+  height: auto;
+  display: block;
+  margin: 0 auto 30px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-drag: none;
+  pointer-events: auto;
+}
+
+.student .quote-pen:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.student .opening-quote {
+  font-family: 'Argent CF', serif;
+  font-size: 96px;
+  font-style: italic;
+  line-height: 35px;
+  text-align: center;
+  color: rgba(57, 57, 61, 0.9);
+  margin: 0 0 20px 0;
+}
+
+.student .quote-text {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 48px;
+  font-style: italic;
+  line-height: 50px;
+  text-align: center;
+  color: rgba(57, 57, 61, 0.9);
+  margin: 0;
+}
+
+.student .quote-text strong {
+  font-weight: 700;
+  font-style: italic;
+}
+
+.student .quote-text .pink-emphasis {
+  color: #d57979;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.student .closing-quote {
+  font-family: 'Argent CF', serif;
+  font-size: 96px;
+  font-style: italic;
+  line-height: 35px;
+  text-align: center;
+  color: rgba(57, 57, 61, 0.9);
+  margin: 20px 0 10px 0;
+}
+
+.student .quote-attribution {
+  font-family: 'Argent CF', serif;
+  font-size: 24px;
+  line-height: 30px;
+  text-align: center;
+  color: rgba(57, 57, 61, 0.9);
+  margin: 10px 0 0 0;
+  font-style: normal;
+}
+
+@media (max-width: 768px) {
+  .student {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .student .lelongbook,
+  .student .quote-block {
+    grid-column: 1;
+  }
+
+  .student .quote-text {
+    font-size: clamp(24px, 5vw, 48px);
+    line-height: 1.2;
+  }
+
+  .student .opening-quote,
+  .student .closing-quote {
+    font-size: 64px;
+  }
+
+  .student .quote-attribution {
+    font-size: 18px;
+  }
 }

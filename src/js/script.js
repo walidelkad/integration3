@@ -1,50 +1,53 @@
-// ============================================================================
-// CHRISTIAN DIOR WEBSITE - JAVASCRIPT
-// ============================================================================
-
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+
+/*****************************/
 // Animate SVG stroke on scroll
 function setupStrokeAnimation() {
-  const strokeSVG = document.querySelector('.stroke');
-  const strokeLine = strokeSVG?.querySelector('line');
+  const strokes = ['.stroke', '.stroke2', '.stroke3'];
 
-  if (!strokeLine) {
-    console.log('Stroke line not found');
-    return;
-  }
+  strokes.forEach((selector) => {
+    const strokeSVG = document.querySelector(selector);
+    const strokeLine = strokeSVG?.querySelector('line');
 
-  // Calculate line length
-  const x1 = parseFloat(strokeLine.getAttribute('x1'));
-  const y1 = parseFloat(strokeLine.getAttribute('y1'));
-  const x2 = parseFloat(strokeLine.getAttribute('x2'));
-  const y2 = parseFloat(strokeLine.getAttribute('y2'));
-  const lineLength = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
-
-  console.log('Line length:', lineLength);
-
-  // Set up the starting position (draw from bottom to top)
-  gsap.set(strokeLine, {
-    strokeDasharray: lineLength,
-    strokeDashoffset: lineLength
-  });
-
-  // Animate on scroll
-  gsap.to(strokeLine, {
-    strokeDashoffset: 0,
-    duration: 1,
-    ease: 'easeIn',
-    scrollTrigger: {
-      trigger: '.cta-button',
-      start: 'top bottom',
-      end: 'bottom top',
-      scrub: 1,
+    if (!strokeLine) {
+      console.log(`Stroke line not found for ${selector}`);
+      return;
     }
+
+    // Calculate line length
+    const x1 = parseFloat(strokeLine.getAttribute('x1'));
+    const y1 = parseFloat(strokeLine.getAttribute('y1'));
+    const x2 = parseFloat(strokeLine.getAttribute('x2'));
+    const y2 = parseFloat(strokeLine.getAttribute('y2'));
+    const lineLength = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+
+    console.log(`Line length for ${selector}:`, lineLength);
+
+    // Set up the starting position (draw from highest point to lowest point)
+    gsap.set(strokeLine, {
+      strokeDasharray: lineLength,
+      strokeDashoffset: -lineLength
+    });
+
+    // Animate on scroll
+    gsap.to(strokeLine, {
+      strokeDashoffset: 0,
+      duration: 1,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: strokeSVG,
+        start: 'top 100%',
+        end: 'bottom 20%',
+        scrub: 1,
+      }
+    });
   });
 }
+/*****************************/
 
 // Initialize the canvas eraser functionality
 function initializeSketchCanvas() {
@@ -257,23 +260,183 @@ function setupAnimation() {
   }
 }
 
+// Fade in all sections on scroll
+function setupSectionFadeIn() {
+  const sections = document.querySelectorAll('section, .hero-content, .svg-container');
 
+  sections.forEach((section) => {
+    // Set initial state
+    gsap.set(section, {
+      opacity: 0
+    });
 
+    // Animate
+    gsap.to(section, {
+      opacity: 1,
+      duration: 1.5,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 90%',
+        toggleActions: 'play none none none',
+        once: true
+      }
+    });
+  });
+}
 
+// Quote writing animation
+function setupQuoteWriting() {
+  const quoteBlock = document.querySelector('.quote-block');
+  const quotePen = document.querySelector('.quote-pen');
+  const quoteText = document.querySelector('.quote-text');
 
+  if (!quoteBlock || !quotePen || !quoteText) return;
 
+  // Split text into individual characters
+  const textContent = quoteText.innerHTML;
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = textContent;
 
+  // Function to wrap each character in a span
+  function wrapCharacters(element) {
+    const nodes = Array.from(element.childNodes);
+    element.innerHTML = '';
 
+    nodes.forEach(node => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        // Split text into characters
+        const chars = node.textContent.split('');
+        chars.forEach(char => {
+          const span = document.createElement('span');
+          span.textContent = char;
+          span.className = 'char';
+          span.style.opacity = '0.15';
+          element.appendChild(span);
+        });
+      } else if (node.nodeType === Node.ELEMENT_NODE) {
+        // Clone the element and wrap its contents
+        const clone = node.cloneNode(false);
+        wrapCharacters(node);
+        while (node.firstChild) {
+          clone.appendChild(node.firstChild);
+        }
+        element.appendChild(clone);
+      }
+    });
+  }
 
+  wrapCharacters(quoteText);
 
+  // Hold-to-write functionality
+  let animation = null;
+  let isPressed = false;
 
+  const startWriting = () => {
+    if (isPressed) return;
+    isPressed = true;
 
+    const chars = quoteText.querySelectorAll('.char');
 
+    animation = gsap.to(chars, {
+      opacity: 1,
+      duration: 0.05,
+      stagger: {
+        amount: 10,
+        from: 'start'
+      },
+      ease: 'none',
+      paused: false
+    });
+  };
 
+  const stopWriting = () => {
+    isPressed = false;
+    if (animation) {
+      animation.pause();
+    }
+  };
 
+  const resumeWriting = () => {
+    if (isPressed) return;
+    isPressed = true;
+    if (animation) {
+      animation.resume();
+    }
+  };
 
+  // Mouse events
+  quotePen.addEventListener('mousedown', (e) => {
+    e.preventDefault();
+    if (!animation) {
+      startWriting();
+    } else {
+      resumeWriting();
+    }
+  });
 
+  quotePen.addEventListener('mouseup', (e) => {
+    e.preventDefault();
+    stopWriting();
+  });
 
+  quotePen.addEventListener('mouseleave', (e) => {
+    e.preventDefault();
+    stopWriting();
+  });
+
+  // Touch events for mobile
+  quotePen.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!animation) {
+      startWriting();
+    } else {
+      resumeWriting();
+    }
+  }, { passive: false });
+
+  quotePen.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    stopWriting();
+  }, { passive: false });
+
+  quotePen.addEventListener('touchcancel', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    stopWriting();
+  }, { passive: false });
+
+  // Prevent context menu on long press
+  quotePen.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+  });
+}
+
+// Animate chapter reveals as stroke draws
+function setupChapterReveal() {
+  const strokeWrapper = document.querySelector('.stroke-wrapper');
+  const chapterItems = document.querySelectorAll('.chapter-item');
+
+  if (!strokeWrapper || chapterItems.length === 0) return;
+
+  // Animate each chapter to fade in as the stroke passes
+  gsap.to(chapterItems, {
+    opacity: 1,
+    duration: 0.3,
+    stagger: {
+      amount: 2.5,
+      from: 'start'
+    },
+    scrollTrigger: {
+      trigger: strokeWrapper,
+      start: 'top 80%',
+      end: 'bottom 20%',
+      scrub: 1
+    }
+  });
+}
 
 
 // Initialize all interactions on page load
@@ -285,6 +448,10 @@ document.addEventListener('DOMContentLoaded', () => {
   setupTimer();
   setupSketchesAnimation();
   setupAnimation();
+  setupSectionFadeIn();
+  setupQuoteWriting();
+  setupChapterReveal();
+  setupChapterNavigation();
 
   // Handle window resize for canvas
   window.addEventListener('resize', () => {
@@ -307,3 +474,21 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log('Christian Dior Website - Initialized');
 });
 
+function setupChapterNavigation() {
+  const chapterLinks = document.querySelectorAll('.chapter-title');
+
+  chapterLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute('href');
+      const targetSection = document.querySelector(targetId);
+
+      if (targetSection) {
+        targetSection.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+}
