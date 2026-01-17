@@ -195,7 +195,12 @@ body {
   align-items: center;
 }
 
-.stroke {
+.stroke,
+.stroke2,
+.stroke3,
+.stroke4,
+.stroke5,
+.stroke6 {
   display: block;
   margin: 0 auto;
   width: 5px;
@@ -211,14 +216,14 @@ body {
   stroke-linejoin: round;
 }
 
-.stroke3 {
-  display: block;
-  margin: 0 auto;
-  width: 5px;
-  height: 738px;
-}
 
-.stroke3 line {
+
+.stroke line,
+.stroke2 line,
+.stroke3 line,
+.stroke4 line,
+.stroke5 line,
+.stroke6 line {
   fill: none;
   stroke: #D57979;
   opacity: 0.8;
@@ -227,21 +232,7 @@ body {
   stroke-linejoin: round;
 }
 
-.stroke2 {
-  display: block;
-  margin: 0 auto;
-  width: 5px;
-  height: 738px;
 
-}
-
-.stroke2 line {
-  stroke: #D57979;
-  opacity: 0.8;
-  stroke-width: 3;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
 
 .pen {
   rotate: 20deg;
@@ -657,6 +648,67 @@ body {
   font-style: italic;
 }
 
+/* Why Matters Section Styles */
+.legacy-title {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: bold;
+  font-size: 90px;
+  line-height: 60px;
+  color: #D57979;
+  margin: 3rem 0 2rem 0;
+  text-align: center;
+}
+
+.legacy-text {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 50px;
+  color: rgba(57, 57, 61, 0.9);
+  margin: 2rem auto;
+  max-width: 1200px;
+  text-align: left;
+  padding: 0 2rem;
+}
+
+.legacy-text strong {
+  font-weight: bold;
+}
+
+.legacy-text .pink-emphasis {
+  color: #D57979;
+}
+
+.journey-title {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: bold;
+  font-size: 64px;
+  line-height: 60px;
+  color: #D57979;
+  margin: 4rem 0 2rem 0;
+  text-align: center;
+}
+
+.reminder-text {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 50px;
+  color: rgba(57, 57, 61, 0.9);
+  margin: 2rem auto 4rem auto;
+  max-width: 1200px;
+  text-align: left;
+  padding: 0 2rem;
+}
+
+.reminder-text strong {
+  font-weight: bold;
+}
+
+.reminder-text .pink-emphasis {
+  color: #D57979;
+}
+
 .student .closing-quote {
   font-family: 'Argent CF', serif;
   font-size: 96px;
@@ -675,6 +727,84 @@ body {
   color: rgba(57, 57, 61, 0.9);
   margin: 10px 0 0 0;
   font-style: normal;
+}
+
+.sketchbook-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 1rem 0;
+}
+
+.sketchbook-tools {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin: 2rem 0 1rem 0;
+}
+
+.tool-btn {
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  padding: 10px;
+  border: 3px solid transparent;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  background-color: #f5f5f5;
+}
+
+.tool-btn:hover {
+  transform: scale(1.1);
+  border-color: #d57979;
+}
+
+.tool-btn.active {
+  border-color: #d57979;
+  background-color: #ffe5e5;
+  box-shadow: 0 4px 8px rgba(213, 121, 121, 0.3);
+}
+
+.sketchbook-controls {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin: 1rem 0 2rem 0;
+}
+
+.sketch-control-btn {
+  background-color: #d57979;
+  color: white;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+}
+
+.sketch-control-btn:hover:not(:disabled) {
+  background-color: #c56868;
+  transform: translateY(-2px);
+}
+
+.sketch-control-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.sketchbook {
+  width: 120%;
+  max-width: 1200px;
+  height: auto;
+  display: block;
+  margin-left: -10%;
+  margin-right: -10%;
+  cursor: crosshair;
 }
 
 @media (max-width: 768px) {

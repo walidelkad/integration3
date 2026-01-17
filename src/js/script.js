@@ -7,7 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 /*****************************/
 // Animate SVG stroke on scroll
 function setupStrokeAnimation() {
-  const strokes = ['.stroke', '.stroke2', '.stroke3'];
+  const strokes = ['.stroke', '.stroke2', '.stroke3', '.stroke4', '.stroke5', '.stroke6'];
 
   strokes.forEach((selector) => {
     const strokeSVG = document.querySelector(selector);
@@ -48,6 +48,268 @@ function setupStrokeAnimation() {
   });
 }
 /*****************************/
+
+// Initialize the sketchbook canvas for drawing
+function initializeSketchbookCanvas() {
+  const canvas = document.getElementById('sketchbook-canvas');
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d', { willReadFrequently: true });
+  const img = document.getElementById('sketchbook-image');
+  let isDrawing = false;
+  let lastX = 0;
+  let lastY = 0;
+  let currentTool = 'pencil'; // 'pencil' or 'eraser'
+
+  // History for undo/redo - store only the drawing layer
+  let history = [];
+  let historyStep = -1;
+
+  // Create separate canvases for background and drawing
+  const bgCanvas = document.createElement('canvas');
+  const bgCtx = bgCanvas.getContext('2d');
+  const drawingCanvas = document.createElement('canvas');
+  const drawingCtx = drawingCanvas.getContext('2d');
+
+  // Set canvas sizes
+  const container = canvas.parentElement;
+  const computedStyle = getComputedStyle(canvas);
+  const width = parseInt(computedStyle.width);
+  const height = (width / 1000) * 700;
+
+  canvas.width = width;
+  canvas.height = height;
+  bgCanvas.width = width;
+  bgCanvas.height = height;
+  drawingCanvas.width = width;
+  drawingCanvas.height = height;
+
+  // Draw the background image on separate canvas (permanent)
+  const drawBackground = () => {
+    bgCtx.drawImage(img, 0, 0, bgCanvas.width, bgCanvas.height);
+  };
+
+  // Composite background with drawing layer
+  const redrawCanvas = () => {
+    // Clear main canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // Draw background first
+    ctx.drawImage(bgCanvas, 0, 0);
+    // Draw the drawing layer on top
+    ctx.drawImage(drawingCanvas, 0, 0);
+  };
+
+  img.onload = () => {
+    drawBackground();
+    redrawCanvas();
+    if (history.length === 0) {
+      saveState();
+    }
+  };
+
+  if (img.complete) {
+    drawBackground();
+    redrawCanvas();
+    if (history.length === 0) {
+      saveState();
+    }
+  }
+
+  // Configure drawing style
+  function setDrawMode() {
+    if (currentTool === 'pencil') {
+      drawingCtx.globalCompositeOperation = 'source-over';
+      drawingCtx.strokeStyle = '#000000b7';
+      drawingCtx.lineWidth = 2;
+    } else if (currentTool === 'eraser') {
+      drawingCtx.globalCompositeOperation = 'destination-out';
+      drawingCtx.strokeStyle = 'rgba(0,0,0,1)';
+      drawingCtx.lineWidth = 20;
+    }
+    drawingCtx.lineCap = 'round';
+    drawingCtx.lineJoin = 'round';
+  }
+
+  setDrawMode();
+
+  function saveState() {
+    historyStep++;
+    // Remove any states after current step (when drawing after undo)
+    if (historyStep < history.length) {
+      history.length = historyStep;
+    }
+    // Save only the drawing layer
+    history.push(drawingCanvas.toDataURL());
+    updateButtons();
+  }
+
+  function updateButtons() {
+    const undoBtn = document.getElementById('undo-btn');
+    const redoBtn = document.getElementById('redo-btn');
+
+    if (undoBtn) undoBtn.disabled = historyStep <= 0;
+    if (redoBtn) redoBtn.disabled = historyStep >= history.length - 1;
+  }
+
+  function undo() {
+    if (historyStep > 0) {
+      historyStep--;
+      const imgData = new Image();
+      imgData.src = history[historyStep];
+      imgData.onload = () => {
+        drawingCtx.clearRect(0, 0, drawingCanvas.width, drawingCanvas.height);
+        drawingCtx.globalCompositeOperation = 'source-over';
+        drawingCtx.drawImage(imgData, 0, 0);
+        setDrawMode();
+        redrawCanvas();
+        updateButtons();
+      };
+    }
+  }
+
+  function redo() {
+    if (historyStep < history.length - 1) {
+      historyStep++;
+      const imgData = new Image();
+      imgData.src = history[historyStep];
+      imgData.onload = () => {
+        drawingCtx.clearRect(0, 0, drawingCanvas.width, drawingCanvas.height);
+        drawingCtx.globalCompositeOperation = 'source-over';
+        drawingCtx.drawImage(imgData, 0, 0);
+        setDrawMode();
+        redrawCanvas();
+        updateButtons();
+      };
+    }
+  }
+
+  function startDrawing(e) {
+    const rect = canvas.getBoundingClientRect();
+    const x = (e.clientX || e.pageX) - rect.left;
+    const y = (e.clientY || e.pageY) - rect.top;
+
+    // Only allow drawing on the right half of the canvas
+    if (x > canvas.width / 2) {
+      isDrawing = true;
+      lastX = x;
+      lastY = y;
+    }
+  }
+
+  function draw(e) {
+    if (!isDrawing) return;
+
+    const rect = canvas.getBoundingClientRect();
+    const x = (e.clientX || e.pageX) - rect.left;
+    const y = (e.clientY || e.pageY) - rect.top;
+
+    // Only draw on the right half of the canvas
+    if (x > canvas.width / 2) {
+      drawingCtx.beginPath();
+      drawingCtx.moveTo(lastX, lastY);
+      drawingCtx.lineTo(x, y);
+      drawingCtx.stroke();
+
+      // Redraw the composite
+      redrawCanvas();
+
+      lastX = x;
+      lastY = y;
+    } else {
+      // Stop drawing if moved to left side
+      isDrawing = false;
+    }
+  }
+
+  function stopDrawing() {
+    if (isDrawing) {
+      isDrawing = false;
+      saveState();
+    }
+  }
+
+  // Mouse events
+  canvas.addEventListener('mousedown', startDrawing);
+  canvas.addEventListener('mousemove', draw);
+  canvas.addEventListener('mouseup', stopDrawing);
+  canvas.addEventListener('mouseleave', stopDrawing);
+
+  // Touch events for mobile
+  canvas.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    startDrawing(e.touches[0]);
+  }, { passive: false });
+
+  canvas.addEventListener('touchmove', (e) => {
+    e.preventDefault();
+    draw(e.touches[0]);
+  }, { passive: false });
+
+  canvas.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    stopDrawing();
+  }, { passive: false });
+
+  canvas.addEventListener('touchcancel', (e) => {
+    e.preventDefault();
+    stopDrawing();
+  }, { passive: false });
+
+  // Button event listeners
+  const undoBtn = document.getElementById('undo-btn');
+  const redoBtn = document.getElementById('redo-btn');
+  const downloadBtn = document.getElementById('download-btn');
+  const pencilTool = document.getElementById('pencil-tool');
+  const eraserTool = document.getElementById('eraser-tool');
+
+  if (undoBtn) undoBtn.addEventListener('click', undo);
+  if (redoBtn) redoBtn.addEventListener('click', redo);
+
+  if (downloadBtn) {
+    downloadBtn.addEventListener('click', () => {
+      // Create a temporary canvas with both layers
+      const tempCanvas = document.createElement('canvas');
+      tempCanvas.width = canvas.width;
+      tempCanvas.height = canvas.height;
+      const tempCtx = tempCanvas.getContext('2d');
+
+      // Draw background and drawing layer
+      tempCtx.drawImage(bgCanvas, 0, 0);
+      tempCtx.drawImage(drawingCanvas, 0, 0);
+
+      // Convert to PNG and download
+      tempCanvas.toBlob((blob) => {
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `dior-sketch-${Date.now()}.png`;
+        link.click();
+        URL.revokeObjectURL(url);
+      }, 'image/png');
+    });
+  }
+
+  // Tool selection
+  if (pencilTool) {
+    pencilTool.addEventListener('click', () => {
+      currentTool = 'pencil';
+      setDrawMode();
+      pencilTool.classList.add('active');
+      eraserTool.classList.remove('active');
+    });
+  }
+
+  if (eraserTool) {
+    eraserTool.addEventListener('click', () => {
+      currentTool = 'eraser';
+      setDrawMode();
+      eraserTool.classList.add('active');
+      pencilTool.classList.remove('active');
+    });
+  }
+
+  updateButtons();
+}
 
 // Initialize the canvas eraser functionality
 function initializeSketchCanvas() {
@@ -443,6 +705,7 @@ function setupChapterReveal() {
 document.addEventListener('DOMContentLoaded', () => {
   setupStrokeAnimation();
   initializeSketchCanvas();
+  initializeSketchbookCanvas();
   setupSmoothScrolling();
   setupScrollAnimations();
   setupTimer();
