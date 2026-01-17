@@ -54,7 +54,6 @@ body {
 .hero-subtitle {
   font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: 1rem;
-  font-weight: 700;
   text-align: center;
   margin: 2rem 0;
   text-transform: uppercase;
@@ -105,7 +104,6 @@ body {
   right: 2rem;
 
   display: flex;
-  justify-content: ;
 
 
 }
@@ -127,26 +125,39 @@ body {
 }
 
 .svg-container {
-  display: flex;
+  /*display: flex;
   justify-content: center;
+  align-items: center;*/
   margin-top: 2rem;
   position: relative;
   bottom: 90rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .stroke {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
+  display: block;
   margin: 0 auto;
-  text-align: center;
+  width: 5px;
+  height: 738px;
+}
+
+.stroke path {
+  fill: none;
+  stroke: #D57979;
+  opacity: 0.8;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .pen {
   rotate: 20deg;
   position: relative;
   z-index: 1;
+  margin: 0 auto 0 460px;
+  display: block;
 }
 
 .paris-text {
@@ -160,24 +171,49 @@ body {
   text-align: center;
   margin: 2rem 0;
 }
+.dior-date {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: clamp(24px, 4vw, 48px);
+  font-weight: 500;
+  line-height: 1.2;
+  color: rgba(57, 57, 61, 0.9);
+  text-align: center;
+  margin: 0;
+  opacity: 0.8;
+  text-decoration: underline;
+  text-decoration-color: rgba(57, 57, 61, 0.8);
+}
+.dior-subtitle {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: clamp(50px, 5vw, 64px);
+  font-weight: 700;
+  line-height: 1.1;
+  color: rgba(57, 57, 61, 0.9);
+  text-align: center;
+  opacity: 0.9;
+  margin: 0;
+}
 
 .year-text {
   font-family: 'Qwitcher Grypen', cursive;
-  font-size: 128px;
   font-weight: 400;
   line-height: 80px;
   color: rgba(57, 57, 61, 0.9);
   text-transform: uppercase;
   position: relative;
   text-align: center;
-  margin: 1rem 0;
-  font-size: clamp(16px, 3vw, 48px);
+  font-size: clamp(120px, 3vw, 48px);
+  position: relative;
+  left: 90px;
+  top: 60px;
+  z-index: 10;
 
 }
 
 .papersection {
   position: relative;
   z-index: 0;
+  bottom: 10rem;
   background-image: url(/integration3/src/assets/papershed.png);
   background-repeat: no-repeat;
 

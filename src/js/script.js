@@ -9,26 +9,39 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Animate SVG stroke on scroll
 function setupStrokeAnimation() {
-  const strokePath = document.querySelector('.stroke path');
-  if (!strokePath) return;
+  const strokeSVG = document.querySelector('.stroke');
+  const strokeLine = strokeSVG?.querySelector('line');
 
-  const pathLength = strokePath.getTotalLength();
+  if (!strokeLine) {
+    console.log('Stroke line not found');
+    return;
+  }
 
-  // Set up the starting position
-  gsap.set(strokePath, {
-    strokeDasharray: pathLength,
-    strokeDashoffset: pathLength
+  // Calculate line length
+  const x1 = parseFloat(strokeLine.getAttribute('x1'));
+  const y1 = parseFloat(strokeLine.getAttribute('y1'));
+  const x2 = parseFloat(strokeLine.getAttribute('x2'));
+  const y2 = parseFloat(strokeLine.getAttribute('y2'));
+  const lineLength = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+
+  console.log('Line length:', lineLength);
+
+  // Set up the starting position (draw from bottom to top)
+  gsap.set(strokeLine, {
+    strokeDasharray: lineLength,
+    strokeDashoffset: lineLength
   });
 
   // Animate on scroll
-  gsap.to(strokePath, {
+  gsap.to(strokeLine, {
     strokeDashoffset: 0,
-    ease: 'none',
+    duration: 1,
+    ease: 'easeIn',
     scrollTrigger: {
-      trigger: '.stroke',
-      start: 'top center',
-      end: 'bottom center',
-      scrub: 1
+      trigger: '.cta-button',
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: 1,
     }
   });
 }
