@@ -607,7 +607,7 @@ function setupQuoteWriting() {
         amount: 10,
         from: 'start'
       },
-      ease: 'none',
+      ease: 'easeInOut',
       paused: false
     });
   };

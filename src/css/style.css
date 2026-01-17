@@ -40,8 +40,8 @@ body {
 }
 
 .hero-title {
-  font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-size: 3rem;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 2.5rem;
   font-weight: 700;
   text-align: center;
   margin: 2rem 0;
@@ -63,6 +63,7 @@ body {
 }
 
 
+
 .highlight {
   color: #ff6f61;
 }
@@ -73,7 +74,7 @@ body {
 }
 
 .diorimg {
-  width: 160px;
+  width: 180px;
   display: block;
   margin: 0 auto;
   opacity: 0;
@@ -82,16 +83,16 @@ body {
 
 .dior2img {
   width: 300px;
-  display: block;
   margin: 0 auto;
   opacity: 0;
   transform: scale(0.8) rotate(5deg);
 }
 
 .dior3img {
-  width: 300px;
-  display: block;
+  width: 350px;
   margin: 0 auto;
+  position: relative;
+  bottom: 4rem;
   opacity: 0;
   transform: scale(0.8) rotate(-5deg);
 }
@@ -148,6 +149,7 @@ body {
   justify-content: center;
   opacity: 0;
   text-align: center;
+
 }
 
 
@@ -159,10 +161,10 @@ body {
   text-align: center;
   -webkit-text-stroke: 25px #f7f7f7;
   paint-order: stroke fill;
-  text-decoration: none;
   cursor: pointer;
   transition: color 0.3s ease;
   display: block;
+
 }
 
 .chapter-title:hover {
@@ -214,6 +216,7 @@ body {
   stroke-width: 3;
   stroke-linecap: round;
   stroke-linejoin: round;
+
 }
 
 
@@ -230,6 +233,7 @@ body {
   stroke-width: 3;
   stroke-linecap: round;
   stroke-linejoin: round;
+
 }
 
 
@@ -294,12 +298,41 @@ body {
 
 }
 
-.papersection {
+.papersection-header {
   position: relative;
-  z-index: 0;
-  bottom: 10rem;
+  z-index: 1;
   background-image: url(/integration3/src/assets/papershed.png);
   background-repeat: no-repeat;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.papersection {
+  background-image: url(/integration3/src/assets/papershed.png);
+  background-repeat: no-repeat;
+  
+}
+
+.section-header {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: clamp(50px, 5vw, 80px);
+  font-weight: 700;
+  line-height: 0.9;
+  color: rgba(57, 57, 61, 0.9);
+  text-transform: uppercase;
+  text-align: center;
+  margin: 7rem 0 5rem;
+  filter: blur(0.001em);
+  position: relative;
+  z-index: 1;
+  text-align: start;
+}
+
+.dior-date,
+.dior-subtitle {
+  max-width: 00px;
+  margin: 1rem auto 1rem auto;
+  text-align: start;
 
 }
 
@@ -312,10 +345,9 @@ body {
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: clamp(16px, 3vw, 48px);
   font-weight: 500;
-  line-height: 1.4;
+  line-height: 1.3;
   color: rgba(57, 57, 61, 0.9);
-  margin: 3rem auto;
-  padding: 0 2rem;
+  padding: 0 1rem;
   max-width: 100%;
   width: 100%;
   box-sizing: border-box;
@@ -331,14 +363,13 @@ body {
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: clamp(16px, 3vw, 50px);
   font-weight: 500;
-  line-height: 1.4;
-  color: #d4d4d4;
+  line-height: 1.3;
+  color: #ffffff;
   max-width: 1200px;
   width: 100%;
   box-sizing: border-box;
   margin-top: 1rem;
 }
-
 .rockbottom-title {
   filter: blur(0.001em);
   font-family: 'IBM Plex Sans', sans-serif;
@@ -361,8 +392,11 @@ body {
 
 .coin {
   filter: blur(0.001em);
-  position: relative;
-  z-index: -10;
+  position: absolute;
+  right: -3rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
 }
 
 .sketches-title {
@@ -375,6 +409,8 @@ body {
   text-align: center;
   margin: 7rem 0 5rem;
   filter: blur(0.001em);
+  position: relative;
+  z-index: 1;
 }
 
 .pen-mightier {
@@ -401,28 +437,25 @@ body {
 
 .ink-income {
   font-family: 'IBM Plex Sans', sans-serif;
-  font-size: clamp(24px, 5vw, 64px);
+  font-size: clamp(18px, 3vw, 48px);
   font-weight: 700;
   line-height: 1.2;
   color: #d57979;
-  text-align: center;
-  margin: 2rem 0;
+  text-align: left;
 }
 
 .selling-text {
   font-family: 'IBM Plex Sans', sans-serif;
-  font-size: clamp(18px, 3.5vw, 48px);
+  font-size: clamp(18px, 3vw, 48px);
   font-weight: 500;
-  line-height: 1.4;
+  line-height: 1.3;
   color: rgba(57, 57, 61, 0.9);
   max-width: 1200px;
   margin: 3rem auto;
-  padding: 0 2rem;
+  text-align: left;
 }
 
-.selling-text p {
-  margin: 0;
-}
+
 
 .selling-text em {
   font-style: italic;
@@ -441,11 +474,9 @@ body {
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: clamp(18px, 3.5vw, 48px);
   font-weight: 500;
-  line-height: 1.4;
+  line-height: 1.3;
   color: rgba(57, 57, 61, 0.9);
-  max-width: 1200px;
   margin: 3rem auto;
-  padding: 0 2rem;
 }
 
 .speed-text p {
@@ -512,8 +543,7 @@ body {
 .moment-section {
   padding: 4rem 2rem;
   text-align: center;
-  max-width: 1200px;
-  margin: 0 auto;
+  
 }
 
 .moment-text {
@@ -530,7 +560,7 @@ body {
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: clamp(18px, 3.5vw, 48px);
   font-weight: 400;
-  line-height: 1.4;
+  line-height: 1.3;
   color: rgba(57, 57, 61, 0.9);
   text-align: center;
   max-width: 1000px;
@@ -554,7 +584,7 @@ body {
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: clamp(18px, 3.5vw, 48px);
   font-weight: 400;
-  line-height: 1.4;
+  line-height: 1.3;
   color: rgba(57, 57, 61, 0.9);
   text-align: center;
   max-width: 1000px;
@@ -586,8 +616,9 @@ body {
 
 .student .lelongbook {
   width: 100%;
-  max-width: 600px;
   height: auto;
+  position: relative;
+  right: 4rem;
   justify-self: center;
   grid-column: 1;
 }
@@ -600,7 +631,7 @@ body {
 }
 
 .student .quote-pen {
-  width: 80px;
+  width: 200px;
   height: auto;
   display: block;
   margin: 0 auto 30px;
@@ -805,6 +836,14 @@ body {
   margin-left: -10%;
   margin-right: -10%;
   cursor: crosshair;
+}
+
+.momu-logo {
+  width: 150px;
+  display: block;
+  margin: 4rem auto 2rem auto;
+  opacity: 0.8;
+  background-color: violet;
 }
 
 @media (max-width: 768px) {
